@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Embedded Content Consuming Site</title>
+    <meta charset="utf-8" />
+    <script src="http://localhost:8080/xfc.js"></script>
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+      iframe {
+        width: 100%;
+        border: none;
+        margin: 0;
+        padding: 0;
+      }
+      html[hidden] {
+        display: none;
+      }
+      .xfc[data-status="mounted"] {
+        border: 5px dashed #000;
+      }
+      .xfc[data-status="launched"] {
+        border: 5px dashed #00f;
+      }
+      .xfc[data-status="authorized"] {
+        border: 5px dashed #0f0;
+      }
+      .grid {
+        display: flex;
+        flex-flow: row wrap;
+      }
+      .grid div {
+        padding: 20px;
+      }
+      #c1 {
+        border: 5px dashed #000;
+      }
+      #c2 {
+        border: 5px dashed #00f;
+      }
+      #c3 {
+        border: 5px dashed #0f0;
+      }
+    </style>
+    <script>
+      $( function() {
+        $( "#sortableBody" ).sortable();
+        // $( "#sortableBody" ).disableSelection();
+      } );
+      </script>
+      <script>
+        function toggleFrames() {
+          let moveFromIndex = 0;
+          let moveToIndex = 1;
+          let $moveItem = $("#sortableBody div:eq(" + moveFromIndex + ")");
+          console.log('MoveItem :',$moveItem);
+          $('#sortableBody').sortable('option')(null, {
+            item: $($moveItem).before($("#sortableBody div:eq(" + moveToIndex + ")"))
+          });
+        }
+      </script>
+  </head>
+  <body id="sortableBody">
+    <h1>
+      Embedded Multiple Iframes with auto resizing example allowing sorting of
+      frames:
+    </h1>
+    <button onclick="toggleFrames()">ToggleFrames</button>
+    <script>
+      XFC.Consumer.init();
+      window.frame1 = XFC.Consumer.mount(document.body, "http://localprovider.com:8080/example/embedded_app_lifecycle/2_c_m_r_provider_consumer_app1.html?url=http://localprovider.com:8080/example/embedded_app_lifecycle/2_c_m_r_provider_embedded_app1.html", { secret: "OAuth Header" });
+      window.frame2 = XFC.Consumer.mount(document.body,"http://localprovider.com:8080/example/embedded_app_lifecycle/2_c_m_r_provider_consumer_app2.html?url=http://localprovider.com:8080/example/embedded_app_lifecycle/2_c_m_r_provider_embedded_app2.html",{ secret: "OAuth Header" });
+    </script>
+  </body>
+</html>
