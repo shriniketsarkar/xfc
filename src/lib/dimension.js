@@ -7,7 +7,15 @@ function getComputedStyle(prop, el = document.body) {
   } else {
     result = document.defaultView.getComputedStyle(el, null);
   }
-  return result !== null ? parseInt(result[prop], 10) : 0;
+  let res;
+  if (typeof parseInt === 'function') {
+    res = parseInt(result[prop], 10);
+  } else {
+    res = 0;
+    logger.error('getComputedStyle -> parseInt is undefined');
+    console.log('getComputedStyle -> parseInt is undefined');
+  }
+  return result !== null ? res : 0;
 }
 
 function getAllMeasures(dimension) {
