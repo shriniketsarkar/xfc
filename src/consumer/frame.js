@@ -198,10 +198,10 @@ class Frame extends EventEmitter {
         console.log('handleProvider : Error was handled frame inner :', message, url, lineNumber);
         console.error('handleProvider : Error was handled frame inner :', message, url, lineNumber);
         console.warn('handleProvider : Error was handled frame inner :', message, url, lineNumber);
-        if (message === 'Object expected') {
-          return true;
-        }
-        return false;
+        // if (message === 'Object expected') {
+        return true;
+        // }
+        // return false;
       };
     }
     // 1. This isn't a JSONRPC message or iframe is null, exit.
