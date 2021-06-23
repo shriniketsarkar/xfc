@@ -193,14 +193,6 @@ class Frame extends EventEmitter {
   * @param {object} event - The emitted message event.
   */
   handleProviderMessage(event) {
-    if (window && !window.onerror) {
-      console.log('Adding event handler for window.onerror');
-      window.onerror = (message, url, lineNumber) => {
-        console.log('handleProvider : Error was handled frame inner :', message, url, lineNumber);
-        return true;
-      };
-    }
-
     // 1. This isn't a JSONRPC message or iframe is null, exit.
     if (!event.data.jsonrpc || !this.iframe) return;
 
