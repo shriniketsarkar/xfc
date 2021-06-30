@@ -47,19 +47,24 @@
       }
     </style>
     <script>
-      $( function() {
-        $( "#sortableBody" ).sortable();
+      $(function () {
+        $("#sortableBody").sortable();
         // $( "#sortableBody" ).disableSelection();
-      } );
-      </script>
-      <script>
-        function toggleFrames() {
-          let moveFromIndex = 0;
-          let moveToIndex = 1;
-         
-          $("#sortableBody div:eq(" + moveFromIndex + ")").insertAfter($("#sortableBody div:eq(" + moveToIndex + ")"));
-        }
-      </script>
+      });
+    </script>
+    <script>
+      function toggleFrames() {
+        let moveFromIndex = 0;
+        let moveToIndex = 1;
+
+        $("#sortableBody div:eq(" + moveFromIndex + ")").insertAfter(
+          $("#sortableBody div:eq(" + moveToIndex + ")")
+        );
+        let a = {};
+        // This will generate an error.
+        a.b();
+      }
+    </script>
   </head>
   <body id="sortableBody">
     <h1>
@@ -69,8 +74,16 @@
     <button onclick="toggleFrames()">ToggleFrames</button>
     <script>
       XFC.Consumer.init();
-      window.frame1 = XFC.Consumer.mount(document.body, "http://localprovider.com:8080/example/embedded_app_lifecycle/2_c_m_r_provider_consumer_app1.html?url=http://localprovider.com:8080/example/embedded_app_lifecycle/2_c_m_r_provider_embedded_app1.html", { secret: "OAuth Header" });
-      window.frame2 = XFC.Consumer.mount(document.body,"http://localprovider.com:8080/example/embedded_app_lifecycle/2_c_m_r_provider_consumer_app2.html?url=http://localprovider.com:8080/example/embedded_app_lifecycle/2_c_m_r_provider_embedded_app2.html",{ secret: "OAuth Header" });
+      window.frame1 = XFC.Consumer.mount(
+        document.body,
+        "http://localprovider.com:8080/example/embedded_app_lifecycle/2_c_m_r_provider_consumer_app1.html?url=http://localprovider.com:8080/example/embedded_app_lifecycle/2_c_m_r_provider_embedded_app1.html",
+        {secret: "OAuth Header"}
+      );
+      window.frame2 = XFC.Consumer.mount(
+        document.body,
+        "http://localprovider.com:8080/example/embedded_app_lifecycle/2_c_m_r_provider_consumer_app2.html?url=http://localprovider.com:8080/example/embedded_app_lifecycle/2_c_m_r_provider_embedded_app2.html",
+        {secret: "OAuth Header"}
+      );
     </script>
   </body>
 </html>
